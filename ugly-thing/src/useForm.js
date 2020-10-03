@@ -1,12 +1,18 @@
-import React, {useState} from "react"
+import {useState} from "react"
 
-function Forms() {
-    const [inputTitle, setInputTitle] = useState()
+
+
+function useForm() {
+    const [inputTitle, setInputTitle] = useState("")
+    const [imgUrl, setImgUrl] = useState("")
+    const [description, setDescription] = useState("")
+    
 
   function handleChange(event) {
-    const {inputTitle} = event.target
-    setInputTitle
+    const {name, value} = event.target
+    setInputTitle( prevInputTitle => ({...prevInputTitle, [name]: value}))
 
-    return[inputTitle, handleChange]
+    return[inputTitle, imgUrl, description, handleChange ]
+ }
 }
-export default Forms
+export default useForm

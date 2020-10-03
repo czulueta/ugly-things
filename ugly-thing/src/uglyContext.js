@@ -1,11 +1,20 @@
-import React from "react"
+import React, {useContext, useState} from "react"
+// import useForm from "./useForm"
 
-function uglyContextProvider() {
+const UglyContext = React.createContext()
+
+function UglyContextProvider(props) {
+    const [uglyThings, setUglyThings] = useState([])
+
+    function handleSubmit(inputTitle) {
+        setUglyThings(prevUglyThings => [...prevUglyThings, inputTitle])
+    }
+    
 
     return(
-        <div>
-
-        </div>
+        <UglyContext.Provider value={{uglyThings, handleSubmit}}>
+           {props.children}
+        </UglyContext.Provider>
     )
 }
-export default uglyContextProvider
+export {UglyContextProvider, UglyContext}
