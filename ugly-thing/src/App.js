@@ -1,5 +1,6 @@
 import React from "react"
 import Form from "./Form"
+import UglyThingsList from "./UglyThingsList"
 
 
 
@@ -11,6 +12,7 @@ function App() {
     <div>
     
        <Form />
+       <UglyThingsList />
         
     </div>
   );

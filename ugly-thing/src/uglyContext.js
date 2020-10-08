@@ -6,8 +6,9 @@ const UglyContext = React.createContext()
 function UglyContextProvider(props) {
     const [uglyThings, setUglyThings] = useState([])
 
-    function handleSubmit(inputTitle) {
-        setUglyThings(prevUglyThings => [...prevUglyThings, inputTitle])
+    function handleSubmit(event, newThing) {
+        event.preventDefault()
+        setUglyThings(prevUglyThings => [...prevUglyThings, newThing])
     }
     
 

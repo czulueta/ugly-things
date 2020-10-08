@@ -12,29 +12,29 @@ function Form(props) {
     const [description, setDescription] = useState("")
     
 
-  function handleChange(event) {
-    const {name, value} = event.target
-    setInputTitle( prevInputTitle => ({...prevInputTitle, [name]: value}))
-  }
+const newThing = {inputTitle, imgUrl, description}  
     return(
         <div>
-            <form>
+            <form onSubmit={(e) => context.handleSubmit(e,newThing)}>
                 <input 
+                type="text"
                 placeholder="Title"
                 name="inputTitle"
-                value={inputTitle.value}
-                onChange={handleChange}/>
+                value={inputTitle}
+                onChange={(e) => setInputTitle(e.target.value)}/>
                 <input 
+                type="text"
                 placeholder="Image Url"
                 name="imgUrl"
-                value={imgUrl.value}
-                onChange={handleChange}/>
-                <input 
+                value={imgUrl}
+                onChange={(e) => setImgUrl(e.target.value)}/>
+                <input
+                type="text" 
                 placeholder="Description"
                 name="description"
-                value={description.value}
-                onChange={handleChange}/>
-                <button onClick={context.handleSubmit}>Submit</button>
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}/>
+                <button >Submit</button>
             </form>
         </div>
     )
