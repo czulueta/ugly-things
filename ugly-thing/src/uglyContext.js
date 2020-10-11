@@ -1,4 +1,6 @@
-import React, {useContext, useState} from "react"
+import React, {useState} from "react"
+import Form from "./Form"
+import axios from "axios"
 // import useForm from "./useForm"
 
 const UglyContext = React.createContext()
@@ -8,8 +10,28 @@ function UglyContextProvider(props) {
 
     function handleSubmit(event, newThing) {
         event.preventDefault()
-        setUglyThings(prevUglyThings => [...prevUglyThings, newThing])
+        axios.post('https://api.vschool.io/cesar/todo', newThing)
+            .then(res => {
+                setUglyThings(prevUglyThings => [...prevUglyThings, res.data])
+            })
     }
+
+
+    function handleDelete(id){
+        axios.delete(`https://api.vschool.io/cesar/todo/${id}`)
+            .then(res => {
+                setUglyThings(prevUglyThings => prevUglyThings.filter(newThing === newThing._id))
+            })
+    }
+
+    function handleEdit(id) {
+        axios.put(`https://api.vschool.io/cesar/todo/${id}`)
+        .then(res => {
+            setUglyThings(prevUglyTHings => prevUglyThings.filter(newThing === newThing._id))
+        })
+    }
+    
+
     
 
     return(
